@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee List</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<marquee behavior="" direction="left"><h1 align="center">Innovixion Tech Internship Project for Employee Payroll System</h1></marquee>
+
+<h1>Employee List</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Designation</th>
+        <th>Salary</th>
+    </tr>
+    <tr th:each="employee : ${employees}">
+        <td th:text="${employee.id}">1</td>
+        <td th:text="${employee.name}">John Doe</td>
+        <td th:text="${employee.designation}">Developer</td>
+        <td th:text="${employee.salary}">50000</td>
+    </tr>
+</table>
+<a th:href="@{/api/employee/add}"> <button type="submit">Add Employee</button></a>
+<a th:href="@{/api/employee/search}"> <button type="submit">Search Employee</button></a>
+</body>
+</html>

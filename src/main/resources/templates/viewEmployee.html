@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Employee</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .details {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .search-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 60%;
+            margin-right: 10px;
+        }
+
+        .search-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-button:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>View Employee</h1>
+    <div class="search-container">
+        <form th:action="@{/api/employee/search}" method="post">
+            <input type="text" class="search-input" name="employeeId" placeholder="Enter Employee ID">
+            <button type="submit" class="search-button">Search</button>
+        </form>
+    </div>
+    <div th:if="${employee != null}">
+        <div class="details">
+            <div class="detail-item">
+                <label>ID:</label>
+                <span th:text="${employee.id}"></span>
+            </div>
+            <div class="detail-item">
+                <label>Name:</label>
+                <span th:text="${employee.name}"></span>
+            </div>
+            <div class="detail-item">
+                <label>Designation:</label>
+                <span th:text="${employee.designation}"></span>
+            </div>
+            <div class="detail-item">
+                <label>Salary:</label>
+                <span th:text="${employee.salary}"></span>
+            </div>
+            <div class="detail-item">
+                <label>Net Salary:</label>
+                <span th:text="${netSalary}"></span>
+            </div>
+        </div>
+    </div>
+    <div th:if="${employee == null}" style="text-align: center;">
+        <p>Employee not found!</p>
+    </div>
+    <div th:if="${error}" class="error">
+        <p th:text="${error}"></p>
+    </div>
+</div>
+</body>
+</html>
